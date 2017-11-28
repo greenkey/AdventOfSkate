@@ -5,27 +5,88 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style>
-            * {
-                background-color: #e6ecf0;
+            #content {
+                height: 100vh;
             }
             a {
-                color: #91d2fa;
+                color: #66bbff;
             }
             p {
                 color: black;
             }
+            .photo {
+                border: solid 0.5em rgb(45, 120, 219);
+                border-radius: 1em;
+            }
+            #card {
+                border: solid 0.5em rgb(45, 120, 219);
+                border-radius: 1em;
+                background-position: center 0px;
+                background-size: cover;
+                height: 80vh;
+            }
+            #card .label {
+                margin: 1em;
+                padding: 1em;
+                position: absolute;
+                bottom: 1em;
+                right: 1em;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
         </style>
     </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row text-center">
+    <body onload="javascript:init();">
+        <div class="container-fluid" id="content">
+            <div class="row text-center" id="title">
                 <h1><a href="/">Advent Of Skate</a></h1>
             </div>
             <div class="row">
-                <p class="text-center">Coming soon...</p>
+                <div class="col-xs-0  col-sm-1  col-md-2 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 text-center" id="card">
+                        <p class="label"><em class="name"></em>
+                                <br /><a class="twitter" href="http://twitter.com/"><img src="twitter.png" width="20em"/> </a>
+                                <br /><a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a></p>
+                </div>
+                <div class="col-xs-0  col-sm-1  col-md-2 col-lg-3"></div>
             </div>
         </div>
         
+
+    <script>
+
+        var dayData = [
+            {},
+            {
+                "name": "Evgenia Medvedeva",
+                "twitter": "jannymedvedeva",
+                "wikiLink": "https://en.wikipedia.org/wiki/Evgenia_Medvedeva",
+                "secret": "EvgeniaMedvedeva.jpeg"
+            },
+        ]
+
+
+        function setData(data){
+            var cardDiv = document.getElementById("card");
+            var nameEm = card.getElementsByClassName("name")[0];
+            var twitterLink = card.getElementsByClassName("twitter")[0];
+            var wikiLink = card.getElementsByClassName("wikipedia")[0];
+
+            console.log(data);
+            card.style.backgroundImage = "url(images/" + data.secret + ")";
+            nameEm.innerHTML = data.name;
+            twitterLink.innerText = "@" + data.twitter;
+            twitterLink.href = "http://twitter.com/" + data.twitter;
+            wikiLink.href = data.wikiLink;
+
+        }
+
+        function init(){
+            today = new Date;
+            dayNum = today.getDate()
+            setData(dayData[dayNum]);
+        }
+
+    </script>
         
     </body>
 </html>
