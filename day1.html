@@ -8,6 +8,9 @@
             * {
                 background-color: #e6ecf0;
             }
+            #content {
+                height: 100vh;
+            }
             a {
                 color: #66bbff;
             }
@@ -18,18 +21,37 @@
                 border: solid 0.5em rgb(45, 120, 219);
                 border-radius: 1em;
             }
+            #card {
+                border: solid 0.5em rgb(45, 120, 219);
+                border-radius: 1em;
+                background-image: url(EvgeniaMedvedeva.jpeg);
+                background-position: center 0px;
+                background-size: cover;
+                height: 80vh;
+            }
+            #card .label {
+                margin: 1em;
+                padding: 1em;
+                position: absolute;
+                bottom: 1em;
+                right: 1em;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row text-center">
+        <div class="container-fluid" id="content">
+            <div class="row text-center" id="title">
                 <h1><a href="/">Advent Of Skate</a></h1>
             </div>
-            <div class="row text-center">
-                <img src="EvgeniaMedvedeva.jpeg" height="800em" class="photo"/>
-                <p>Evgenia Medvedeva</p>
-                <p><a href="http://twitter.com/jannymedvedeva"><img src="twitter.png" width="20em"/> @jannymedvedeva</a></p>
-                <p><a href="https://en.wikipedia.org/wiki/Evgenia_Medvedeva">Wikipedia</a></p>
+            <div class="row">
+                <div class="col-xs-0  col-sm-1  col-md-2 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 text-center" id="card">
+                        <p class="label">Evgenia Medvedeva
+                                <br /><a href="http://twitter.com/jannymedvedeva"><img src="twitter.png" width="20em"/> @jannymedvedeva</a>
+                                <br /><a href="https://en.wikipedia.org/wiki/Evgenia_Medvedeva">Wikipedia</a></p>            
+                </div>
+                <div class="col-xs-0  col-sm-1  col-md-2 col-lg-3"></div>
             </div>
         </div>
         
