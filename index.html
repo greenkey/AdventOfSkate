@@ -5,6 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <style>
+            * {
+            }
+            body {
+                background-color:  rgb(194, 220, 255);
+            }
+            h1 {
+                font-size: 40px;
+            }
+
             #content {
                 height: 100vh;
             }
@@ -24,15 +33,53 @@
                 background-position: center 0px;
                 background-size: cover;
                 height: 80vh;
+                font-size: 1.2em;
             }
-            #card .label {
+            #card .cardlabel {
                 margin: 1em;
                 padding: 1em;
                 position: absolute;
-                bottom: 1em;
-                right: 1em;
-                background-color: rgba(0, 0, 0, 0.4);
+                bottom: .5em;
+                right: .5em;
+                background-color: rgba(0, 0, 0, 0.6);
+                color: white;
+                border-radius: 1em;
             }
+
+            #calendar {
+                margin-top: 5em;
+            }
+
+           .dayCell, .dayCell .cardContent{
+                border-radius: 1em;
+                border: dotted 0.1em rgb(45, 120, 219);
+                height: 10em;
+                padding: 0px;
+                margin: 0px;
+                background-position: center 0px;
+                background-size: cover;
+                cursor: pointer;
+           }
+           .dayCell .cardContent {
+               display: none;
+           }
+           .dayCell:hover .cardContent {
+                border-radius: 1em;
+                background-color: rgba(0, 0, 0, 0.6);
+                display: block;
+                position: absolute;
+                bottom: 0px;
+                height: 100%;
+                width: 100%;
+                color: white;
+           }
+           .dayCell .cardContent .wikipedia {
+               display: none;
+           }
+
+           #cardTemplate {
+               display: none;
+           }
         </style>
     </head>
     <body onload="javascript:init();">
@@ -43,47 +90,111 @@
             <div class="row">
                 <div class="col-xs-0  col-sm-1  col-md-2 col-lg-3"></div>
                 <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 text-center" id="card">
-                        <p class="label"><em class="name"></em>
-                                <br /><a class="twitter" href="http://twitter.com/"><img src="twitter.png" width="20em"/> </a>
-                                <br /><a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a></p>
                 </div>
                 <div class="col-xs-0  col-sm-1  col-md-2 col-lg-3"></div>
+            </div>
+            <div class="row" id="calendar">
+                <div class="col-xs-0  col-sm-1  col-md-2 col-lg-2"></div>
+                <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8 text-center">
+                    <div class="row">
+                        <div onclick="javascript:show(7);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day7"><div class="cardContent">7</div></div>
+                        <div onclick="javascript:show(24);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day24"><div class="cardContent">24</div></div>
+                        <div onclick="javascript:show(15);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day15"><div class="cardContent">15</div></div>
+                        <div onclick="javascript:show(12);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day12"><div class="cardContent">12</div></div>
+                        <div onclick="javascript:show(5);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day5"><div class="cardContent">5</div></div>
+                        <div onclick="javascript:show(18);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day18"><div class="cardContent">18</div></div>
+                        <div onclick="javascript:show(21);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day21"><div class="cardContent">21</div></div>
+                        <div onclick="javascript:show(23);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day23"><div class="cardContent">23</div></div>
+                        <div onclick="javascript:show(2);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day2"><div class="cardContent">2</div></div>
+                        <div onclick="javascript:show(8);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day8"><div class="cardContent">8</div></div>
+                        <div onclick="javascript:show(22);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day22"><div class="cardContent">22</div></div>
+                        <div onclick="javascript:show(11);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day11"><div class="cardContent">11</div></div>
+                        <div onclick="javascript:show(1);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day1"><div class="cardContent">1</div></div>
+                        <div onclick="javascript:show(17);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day17"><div class="cardContent">17</div></div>
+                        <div onclick="javascript:show(19);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day19"><div class="cardContent">19</div></div>
+                        <div onclick="javascript:show(3);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day3"><div class="cardContent">3</div></div>
+                        <div onclick="javascript:show(9);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day9"><div class="cardContent">9</div></div>
+                        <div onclick="javascript:show(16);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day16"><div class="cardContent">16</div></div>
+                        <div onclick="javascript:show(13);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day13"><div class="cardContent">13</div></div>
+                        <div onclick="javascript:show(4);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day4"><div class="cardContent">4</div></div>
+                        <div onclick="javascript:show(6);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day6"><div class="cardContent">6</div></div>
+                        <div onclick="javascript:show(10);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day10"><div class="cardContent">10</div></div>
+                        <div onclick="javascript:show(14);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day14"><div class="cardContent">14</div></div>
+                        <div onclick="javascript:show(20);" class="col-xs-6 col-sm-4 col-md-4 col-lg-3 dayCell" id="day20"><div class="cardContent">20</div></div>
+                    </div>
+                </div>
             </div>
         </div>
         
 
+        <div id="cardTemplate">
+            <div class="cardContent">
+                <div class="cardlabel">
+                    <span class="name"></span>
+                    <br /><a class="twitter" href="http://twitter.com/"><img src="twitter.png" width="20em"/> </a>
+                    <br /><a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a>
+                </div>
+            </div>
+        </div>
     <script>
 
         var dayData = [
-            {},
             {
-                "name": "Evgenia Medvedeva",
-                "twitter": "jannymedvedeva",
-                "wikiLink": "https://en.wikipedia.org/wiki/Evgenia_Medvedeva",
+                "secret": false
+            },
+            {
+                "name": ["Evgenia Medvedeva"],
+                "twitter": ["jannymedvedeva"],
+                "wikiLink": ["https://en.wikipedia.org/wiki/Evgenia_Medvedeva"],
                 "secret": "EvgeniaMedvedeva.jpeg"
+            },
+            {
+                "name": ["Patrick Chan"],
+                "twitter": ["Pchiddy"],
+                "wikiLink": ["https://en.wikipedia.org/wiki/Pathick_Chan"],
+                "secret": "PatrickChan.jpeg"
             },
         ]
 
 
-        function setData(data){
-            var cardDiv = document.getElementById("card");
-            var nameEm = card.getElementsByClassName("name")[0];
-            var twitterLink = card.getElementsByClassName("twitter")[0];
-            var wikiLink = card.getElementsByClassName("wikipedia")[0];
+        function setCardData(card, data){
+            if(data && data.secret){
+                card.innerHTML = document.getElementById("cardTemplate").innerHTML;
+                var nameEm = card.getElementsByClassName("name");
+                var twitterLink = card.getElementsByClassName("twitter");
+                var wikiLink = card.getElementsByClassName("wikipedia");
+                card.style.backgroundImage = "url(images/" + data.secret + ")";
 
-            console.log(data);
-            card.style.backgroundImage = "url(images/" + data.secret + ")";
-            nameEm.innerHTML = data.name;
-            twitterLink.innerText = "@" + data.twitter;
-            twitterLink.href = "http://twitter.com/" + data.twitter;
-            wikiLink.href = data.wikiLink;
-
+                for(var i = 0; i < data.name.length; i++){
+                    nameEm[i].innerHTML = data.name[i];
+                    twitterLink[i].innerText = "@" + data.twitter[i];
+                    twitterLink[i].href = "http://twitter.com/" + data.twitter[i];
+                    wikiLink[i].href = data.wikiLink[i];
+                }
+            }
         }
 
-        function init(){
-            today = new Date;
-            dayNum = today.getDate()
-            setData(dayData[dayNum]);
+        function init(dayNum=0){
+            if(dayNum==0){
+                today = new Date;
+                if(today.getMonth() != 12) return;
+                dayNum = today.getDate();
+            }
+            for(var i = 1; i<=dayNum; i++) {
+                el = document.getElementById("day" + i);
+                setCardData(el, dayData[i]);
+                links = el.getElementsByTagName("a");
+                for(var j=0; j<links.length; j++){
+                    links[j].onclick = function(){return false;};
+                }
+            }
+            setCardData(document.getElementById("card"), dayData[dayNum]);
+        }
+
+        function show(id){
+            console.log(id);
+            setCardData(document.getElementById("card"), dayData[id]);
+            location.href = '#';
         }
 
     </script>
