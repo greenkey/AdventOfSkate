@@ -148,12 +148,6 @@
                 "wikiLink": ["https://en.wikipedia.org/wiki/Evgenia_Medvedeva"],
                 "secret": "EvgeniaMedvedeva.jpeg"
             },
-            {
-                "name": ["Patrick Chan"],
-                "twitter": ["Pchiddy"],
-                "wikiLink": ["https://en.wikipedia.org/wiki/Pathick_Chan"],
-                "secret": "PatrickChan.jpeg"
-            },
         ]
 
 
@@ -192,7 +186,11 @@
         }
 
         function show(id){
-            console.log(id);
+            today = new Date;
+            if(today.getMonth() != 12) return;
+            dayNum = today.getDate();
+            
+            //if(dayNum < id) return;
             setCardData(document.getElementById("card"), dayData[id]);
             location.href = '#';
         }
