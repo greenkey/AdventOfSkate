@@ -153,29 +153,32 @@
         </div>
     <script>
 
-        var dayData = [
-            {
-                "secret": false
-            },
-            {
-                "name": ["Evgenia Medvedeva"],
-                "twitter": ["jannymedvedeva"],
-                "wikiLink": ["https://en.wikipedia.org/wiki/Evgenia_Medvedeva"],
-                "secret": "EvgeniaMedvedeva.jpeg"
-            },
-            {
-                "name": ["Patrick Chan"],
-                "twitter": ["Pchiddy"],
-                "wikiLink": ["https://en.wikipedia.org/wiki/Pathick_Chan"],
-                "secret": "PatrickChan.png"
-            },
-            {
-                "name": ["Valentina Marchei", "Ondřej Hotàrek"],
-                "twitter": ["valemarchei14", "ondrejhotarek"],
-                "wikiLink": ["https://en.wikipedia.org/wiki/Valentina_Marchei", "https://en.wikipedia.org/wiki/Ondřej_Hotàrek"],
-                "secret": "Marchei+Hotarek.jpeg"
+        var getJSON = function(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.responseType = 'json';
+            xhr.onload = function() {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
             }
-        ]
+            };
+            xhr.send();
+        };
+        var dayData
+
+        getJSON("https://4qhc50ejm6.execute-api.us-east-2.amazonaws.com/prod/getAdventOfSkateJson",
+            function(err, data) {
+            if (err !== null) {
+                alert('Something went wrong: ' + err);
+            } else {
+                dayData = data;
+                init();
+            }
+        });
+
 
 
         function setCardData(card, data){
