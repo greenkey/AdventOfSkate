@@ -139,7 +139,12 @@
 
         <div id="cardTemplate">
             <div class="cardContent">
-                <div class="cardlabel">
+                <div class="cardlabel hidden">
+                    <span class="name"></span>
+                    <br /><a class="twitter" href="http://twitter.com/"><img src="twitter.png" width="20em"/> </a>
+                    <br /><a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a>
+                </div>
+                <div class="cardlabel hidden">
                     <span class="name"></span>
                     <br /><a class="twitter" href="http://twitter.com/"><img src="twitter.png" width="20em"/> </a>
                     <br /><a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a>
@@ -158,6 +163,18 @@
                 "wikiLink": ["https://en.wikipedia.org/wiki/Evgenia_Medvedeva"],
                 "secret": "EvgeniaMedvedeva.jpeg"
             },
+            {
+                "name": ["Patrick Chan"],
+                "twitter": ["Pchiddy"],
+                "wikiLink": ["https://en.wikipedia.org/wiki/Pathick_Chan"],
+                "secret": "PatrickChan.jpeg"
+            },
+            {
+                "name": ["Valentina Marchei", "Ondřej Hotàrek"],
+                "twitter": ["valemarchei14", "ondrejhotarek"],
+                "wikiLink": ["https://en.wikipedia.org/wiki/Valentina_Marchei", "https://en.wikipedia.org/wiki/Ondřej_Hotàrek"],
+                "secret": "Marchei+Hotarek.jpeg"
+            }
         ]
 
 
@@ -167,6 +184,7 @@
                 var nameEm = card.getElementsByClassName("name");
                 var twitterLink = card.getElementsByClassName("twitter");
                 var wikiLink = card.getElementsByClassName("wikipedia");
+                var cardLabel = card.getElementsByClassName("cardlabel");
                 card.style.backgroundImage = "url(images/" + data.secret + ")";
 
                 for(var i = 0; i < data.name.length; i++){
@@ -174,6 +192,8 @@
                     twitterLink[i].innerText = "@" + data.twitter[i];
                     twitterLink[i].href = "http://twitter.com/" + data.twitter[i];
                     wikiLink[i].href = data.wikiLink[i];
+                    if(i>0) cardLabel[i].style.setProperty("bottom", cardLabel[i-1].clientHeight+20+"px")
+                    cardLabel[i].classList.remove("hidden");
                 }
             }
         }
@@ -197,10 +217,7 @@
 
         function show(id){
             today = new Date;
-            if(today.getMonth() != 12) return;
-            dayNum = today.getDate();
-            
-            //if(dayNum < id) return;
+            if(today.getDate()<id) return;
             setCardData(document.getElementById("card"), dayData[id]);
             location.href = '#';
         }
