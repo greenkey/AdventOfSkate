@@ -55,6 +55,9 @@
                 color: white;
                 border-radius: 1em;
             }
+            #card .cardlabel * {
+                display: block;
+            }
 
             #calendar {
                 margin-top: 5em;
@@ -141,13 +144,13 @@
             <div class="cardContent">
                 <div class="cardlabel hidden">
                     <span class="name"></span>
-                    <br /><a class="twitter" href="http://twitter.com/"><img src="twitter.png" width="20em"/> </a>
-                    <br /><a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a>
+                    <a class="twitter" href="http://twitter.com/"></a>
+                    <a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a>
                 </div>
                 <div class="cardlabel hidden">
                     <span class="name"></span>
-                    <br /><a class="twitter" href="http://twitter.com/"><img src="twitter.png" width="20em"/> </a>
-                    <br /><a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a>
+                    <a class="twitter" href="http://twitter.com/"></a>
+                    <a class="wikipedia" href="https://en.wikipedia.org/wiki/">Wikipedia</a>
                 </div>
             </div>
         </div>
@@ -192,9 +195,11 @@
 
                 for(var i = 0; i < data.name.length; i++){
                     nameEm[i].innerHTML = data.name[i];
-                    twitterLink[i].innerText = "@" + data.twitter[i];
-                    twitterLink[i].href = "http://twitter.com/" + data.twitter[i];
-                    wikiLink[i].href = data.wikiLink[i];
+                    if(data.twitter[i]) {
+                        twitterLink[i].innerText = "@" + data.twitter[i];
+                        twitterLink[i].href = "http://twitter.com/" + data.twitter[i];
+                    }
+                    if(data.wikiLink[i]) wikiLink[i].href = data.wikiLink[i];
                     if(i>0) cardLabel[i].style.setProperty("bottom", cardLabel[i-1].clientHeight+20+"px")
                     cardLabel[i].classList.remove("hidden");
                 }
